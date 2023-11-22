@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Sidebar from "./Sidebar";
 import TopBar from "./TopBar";
 import StatisticCard from "./StatisticCard";
+import DataTable from "./DataTable";
 // ... import other components here as you create them
 
 function Dashboard() {
@@ -21,6 +22,8 @@ function Dashboard() {
           <StatisticCard title="Rosak" number="1" />
           {/* Add more StatisticCards here */}
         </Box>
+        <DataTable />{" "}
+        {/* Include the DataTable component at the appropriate place */}
         {/* Rest of the dashboard content will go here */}
       </Box>
     </Box>
