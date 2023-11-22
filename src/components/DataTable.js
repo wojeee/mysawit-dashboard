@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Button,
   Paper,
   Table,
   TableBody,
@@ -9,8 +10,7 @@ import {
   TableRow,
 } from "@mui/material";
 
-function DataTable() {
-  // Example data, replace with your actual data
+function DataTable({ onRowClick }) {
   const rows = [
     createData(
       "87",
@@ -46,17 +46,30 @@ function DataTable() {
             <TableCell>Masa Pinjam</TableCell>
             <TableCell>Tarikh Pulang</TableCell>
             <TableCell>Masa Pulang</TableCell>
+            <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row.id}>
+            <TableRow key={row.id} hover>
               <TableCell>{row.id}</TableCell>
               <TableCell>{row.user}</TableCell>
               <TableCell>{row.tarikhPinjam}</TableCell>
               <TableCell>{row.masaPinjam}</TableCell>
               <TableCell>{row.tarikhPulang}</TableCell>
               <TableCell>{row.masaPulang}</TableCell>
+              <TableCell>
+                <Button
+                  variant="contained"
+                  sx={{ bgcolor: "yellow", "&:hover": { bgcolor: "orange" } }}
+                  onClick={(event) => {
+                    event.stopPropagation(); // Prevents the row click event from firing
+                    onRowClick(row);
+                  }}
+                >
+                  Maklumat Lanjut
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
