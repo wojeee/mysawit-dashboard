@@ -2,12 +2,15 @@ import { createTheme } from "@mui/material/styles";
 
 // Define the palette colors from your image (replace with the actual colors you want to use)
 const paletteColors = {
-  primary: "#056B05", // Example green, replace with your actual primary color
-  secondary: "#05386B", // Example dark blue, replace with your actual secondary color
-  error: "#FF6565", // Example red, replace with your actual error color
-  background: "#EDF5E1", // Example background, replace with your actual background color
-  card: "#FFF5D0", // Example yellow, replace with your actual card color
-  // ... add more custom colors as needed
+  primary: "#056B05",
+  secondary: "#05386B",
+  error: "#FF6565",
+  background: "#EDF5E1",
+  card: "#FFEB3B",
+  grey: {
+    500: "#9e9e9e", // Make sure this color is correctly defined
+  },
+  textPrimary: "#000000",
 };
 
 // Create a theme instance.
@@ -15,7 +18,7 @@ const theme = createTheme({
   palette: {
     primary: {
       main: paletteColors.primary,
-      contrastText: "#ffffff", // This sets the contrast text color to white
+      contrastText: "#ffffff",
     },
     secondary: {
       main: paletteColors.secondary,
@@ -26,17 +29,13 @@ const theme = createTheme({
     background: {
       default: paletteColors.background,
     },
-    grey: {
-      500: "#9e9e9e",
-      400: "#B1B1B1", // Or any grey shade you prefer
+    grey: paletteColors.grey, // Make sure grey is assigned correctly
+    text: {
+      primary: paletteColors.textPrimary,
+      secondary: "#9e9e9e",
     },
-    // Custom color for cards
     card: {
       main: paletteColors.card,
-    },
-    text: {
-      primary: "#000000", // Adding primary text color
-      secondary: paletteColors.grey[500], // Using the custom grey for secondary text
     },
   },
   typography: {
