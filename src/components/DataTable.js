@@ -14,7 +14,7 @@ function DataTable() {
   const rows = [
     createData(
       "87",
-      "Luke Norton",
+      "Charles Leclerc",
       "Nov 3, 2023",
       "7:00AM",
       "Nov 3, 2023",
@@ -22,7 +22,7 @@ function DataTable() {
     ),
     createData(
       "24",
-      "Manai Matin",
+      "Carlos Sainz",
       "Nov 6, 2023",
       "12:30PM",
       "Nov 6, 2023",
