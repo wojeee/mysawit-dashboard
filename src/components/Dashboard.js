@@ -29,7 +29,11 @@ function Dashboard() {
           <StatisticCard title="Rosak" number="1" />
         </Box>
         {/* Pass the handleRowClick function to the DataTable component */}
-        <DataTable onRowClick={handleRowClick} />
+        <Box
+          sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
+        >
+          <DataTable onRowClick={handleRowClick} />
+        </Box>
         {/* Conditionally render the DetailView component if an item is selected */}
         {selectedItemDetails && <DetailView details={selectedItemDetails} />}
       </Box>
