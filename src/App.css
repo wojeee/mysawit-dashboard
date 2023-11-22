@@ -1,0 +1,13 @@
+/* Resets the padding and margin to remove browser-specific padding and margins */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* This will be the main container for your app */
+.App {
+  display: flex; /* Flex to allow for a sidebar and main content area */
+  min-height: 100vh; /* Ensures the app fills the whole viewport height */
+  /* Background color can be controlled via the MUI theme instead */
+}
