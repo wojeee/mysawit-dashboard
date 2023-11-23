@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Paper,
@@ -8,9 +8,18 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
+  Box,
+  IconButton,
+  Typography,
 } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import FilterListIcon from "@mui/icons-material/FilterList";
 
 function DataTable({ onRowClick }) {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Define your data structure here. For example:
   const rows = [
     createData(
       "87",
@@ -28,53 +37,84 @@ function DataTable({ onRowClick }) {
       "Nov 6, 2023",
       "6:20PM"
     ),
-    // Add more rows here
+    // ... add more data as needed
   ];
 
+  // Function to filter rows based on the search term
+  const filteredRows = rows.filter((row) => {
+    return row.user.toLowerCase().includes(searchTerm.toLowerCase());
+    // Add additional conditions here for other fields if needed
+  });
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
   return (
-    <TableContainer
-      component={Paper}
-      elevation={4}
-      sx={{ maxWidth: "100%", marginTop: 2 }}
-    >
-      <Table aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>ID Item</TableCell>
-            <TableCell>User</TableCell>
-            <TableCell>Tarikh Pinjam</TableCell>
-            <TableCell>Masa Pinjam</TableCell>
-            <TableCell>Tarikh Pulang</TableCell>
-            <TableCell>Masa Pulang</TableCell>
-            <TableCell>Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id} hover>
-              <TableCell>{row.id}</TableCell>
-              <TableCell>{row.user}</TableCell>
-              <TableCell>{row.tarikhPinjam}</TableCell>
-              <TableCell>{row.masaPinjam}</TableCell>
-              <TableCell>{row.tarikhPulang}</TableCell>
-              <TableCell>{row.masaPulang}</TableCell>
-              <TableCell>
-                <Button
-                  variant="contained"
-                  sx={{ bgcolor: "yellow", "&:hover": { bgcolor: "orange" } }}
-                  onClick={(event) => {
-                    event.stopPropagation(); // Prevents the row click event from firing
-                    onRowClick(row);
-                  }}
-                >
-                  Maklumat Lanjut
-                </Button>
-              </TableCell>
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: 2,
+          backgroundColor: "background.paper",
+        }}
+      >
+        <Typography variant="h6" component="div">
+          Sedang Digunakan
+        </Typography>
+        <Box>
+          <IconButton>
+            <FilterListIcon />
+          </IconButton>
+          <TextField
+            size="small"
+            placeholder="Search"
+            InputProps={{
+              startAdornment: <SearchIcon />,
+            }}
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        </Box>
+      </Box>
+      <TableContainer component={Paper} elevation={4}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>ID Item</TableCell>
+              <TableCell>User</TableCell>
+              <TableCell>Tarikh Pinjam</TableCell>
+              <TableCell>Masa Pinjam</TableCell>
+              <TableCell>Tarikh Pulang</TableCell>
+              <TableCell>Masa Pulang</TableCell>
+              <TableCell>Actions</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {filteredRows.map((row) => (
+              <TableRow key={row.id} hover onClick={() => onRowClick(row)}>
+                <TableCell>{row.id}</TableCell>
+                <TableCell>{row.user}</TableCell>
+                <TableCell>{row.tarikhPinjam}</TableCell>
+                <TableCell>{row.masaPinjam}</TableCell>
+                <TableCell>{row.tarikhPulang}</TableCell>
+                <TableCell>{row.masaPulang}</TableCell>
+                <TableCell>
+                  <Button
+                    variant="contained"
+                    sx={{ bgcolor: "yellow", "&:hover": { bgcolor: "orange" } }}
+                  >
+                    Maklumat Lanjut
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }
 
