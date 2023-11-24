@@ -19,7 +19,12 @@ function Sidebar() {
 
   return (
     <Box
-      sx={{ width: 250, height: "100vh", bgcolor: theme.palette.primary.main }}
+      sx={{
+        width: 250,
+        height: "100vh",
+        bgcolor: theme.palette.primary.main,
+        position: "fixed", // Add this line to make the sidebar fixed
+      }}
     >
       {/* Logo and title */}
       <Box

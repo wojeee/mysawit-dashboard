@@ -11,7 +11,7 @@ function StatisticCard({ title, number }) {
     <Card
       variant="outlined"
       sx={{
-        minWidth: 275,
+        minWidth: 250,
         margin: theme.spacing(2),
         bgcolor: theme.palette.card.main, // Use card color from theme
       }}
