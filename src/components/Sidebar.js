@@ -13,6 +13,7 @@ import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
+import { NavLink } from "react-router-dom";
 
 function Sidebar() {
   const theme = useTheme();
@@ -47,7 +48,12 @@ function Sidebar() {
       {/* First List of navigation items */}
       <List component="nav" aria-label="main mailbox folders">
         {/* Papan Pemuka Item */}
-        <ListItem button sx={{ color: theme.palette.primary.contrastText }}>
+        <ListItem
+          button
+          component={NavLink}
+          to="/Dashboard"
+          sx={{ color: theme.palette.primary.contrastText }}
+        >
           <ListItemIcon sx={{ color: theme.palette.primary.contrastText }}>
             <DashboardIcon />
           </ListItemIcon>
@@ -57,13 +63,20 @@ function Sidebar() {
           />
         </ListItem>
         {/* Senarai Aset Item */}
-        <ListItem button sx={{ color: theme.palette.primary.contrastText }}>
+        <ListItem
+          button
+          component={NavLink}
+          to="/SenaraiAset"
+          sx={{ color: theme.palette.primary.contrastText }}
+        >
           <ListItemIcon sx={{ color: theme.palette.primary.contrastText }}>
             <DescriptionIcon />
           </ListItemIcon>
-          <ListItemText primary="Senarai Aset" />
+          <ListItemText
+            primary="Senarai Aset"
+            primaryTypographyProps={{ variant: "h6" }}
+          />
         </ListItem>
-
         {/* Notifikasi Item */}
         <ListItem button sx={{ color: theme.palette.primary.contrastText }}>
           <ListItemIcon sx={{ color: theme.palette.primary.contrastText }}>
