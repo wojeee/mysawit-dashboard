@@ -4,133 +4,177 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
+import Collapse from "@mui/material/Collapse";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import WorkIcon from "@mui/icons-material/Work";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
-import DescriptionIcon from "@mui/icons-material/Description";
-import BuildIcon from "@mui/icons-material/Build"; // Icon for maintenance/settings
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import HelpIcon from "@mui/icons-material/Help";
+import LogoutIcon from "@mui/icons-material/Logout";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 import { NavLink } from "react-router-dom";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
 
 function Sidebar() {
   const theme = useTheme();
+  const [openApps, setOpenApps] = React.useState(true); // Assuming apps are always open
+  const [openManagement, setOpenManagement] = React.useState(false);
+
+  const handleAppsClick = () => {
+    setOpenApps(!openApps);
+  };
+
+  const handleManagementClick = () => {
+    setOpenManagement(!openManagement);
+  };
 
   return (
     <Box
       sx={{
         width: 250,
+        bgcolor: theme.palette.primary.dark,
+        color: theme.palette.primary.contrastText,
         height: "100vh",
-        bgcolor: theme.palette.primary.main,
-        position: "fixed", // Add this line to make the sidebar fixed
+        position: "fixed",
       }}
     >
-      {/* Logo and title */}
+      {/* Logo and Title */}
       <Box
         sx={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           p: 2,
+          bgcolor: theme.palette.primary.dark,
         }}
       >
         <Typography
-          variant="h4"
+          variant="h6"
           sx={{ color: theme.palette.primary.contrastText }}
         >
-          MYFleet
+          MYSawit
         </Typography>
       </Box>
-      <Divider sx={{ bgcolor: theme.palette.primary.light }} />
+      <Divider />
 
-      {/* First List of navigation items */}
-      <List component="nav" aria-label="main mailbox folders">
-        {/* Papan Pemuka Item */}
-        <ListItem
-          button
-          component={NavLink}
-          to="/Dashboard"
-          sx={{ color: theme.palette.primary.contrastText }}
-        >
-          <ListItemIcon sx={{ color: theme.palette.primary.contrastText }}>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText
-            primary="Papan Pemuka"
-            primaryTypographyProps={{ variant: "h6" }}
-          />
-        </ListItem>
-        {/* Senarai Aset Item */}
-        <ListItem
-          button
-          component={NavLink}
-          to="/SenaraiAset"
-          sx={{ color: theme.palette.primary.contrastText }}
-        >
-          <ListItemIcon sx={{ color: theme.palette.primary.contrastText }}>
-            <DescriptionIcon />
-          </ListItemIcon>
-          <ListItemText
-            primary="Senarai Aset"
-            primaryTypographyProps={{ variant: "h6" }}
-          />
-        </ListItem>
-        {/* Notifikasi Item */}
-        <ListItem button sx={{ color: theme.palette.primary.contrastText }}>
-          <ListItemIcon sx={{ color: theme.palette.primary.contrastText }}>
-            <NotificationsIcon />
-          </ListItemIcon>
-          <ListItemText
-            primary="Notifikasi"
-            primaryTypographyProps={{ variant: "h6" }}
-          />
-        </ListItem>
-
-        {/* Tetapan Item */}
-        <ListItem button sx={{ color: theme.palette.primary.contrastText }}>
-          <ListItemIcon sx={{ color: theme.palette.primary.contrastText }}>
-            <SettingsIcon />
-          </ListItemIcon>
-          <ListItemText
-            primary="Tetapan"
-            primaryTypographyProps={{ variant: "h6" }}
-          />
-        </ListItem>
-      </List>
-
-      <Divider sx={{ bgcolor: theme.palette.primary.light }} />
-
-      {/* Second List for Penyelenggaraan section */}
+      {/* APPS Section */}
       <List
         subheader={
           <ListSubheader
             component="div"
             sx={{
-              bgcolor: "inherit",
-              color: theme.palette.grey[400], // Use a grey color from the theme
-              lineHeight: "48px",
-              fontSize: theme.typography.h6.fontSize, // Optional: Adjust the font size if needed
+              bgcolor: theme.palette.primary.dark,
+              color: theme.palette.grey[500],
             }}
           >
-            Penyelenggaraan
+            APPS
           </ListSubheader>
         }
       >
-        {/* Selenggara Item */}
-        <ListItem button sx={{ color: theme.palette.primary.contrastText }}>
-          <ListItemIcon sx={{ color: theme.palette.primary.contrastText }}>
-            <BuildIcon />
+        <ListItem button component={NavLink} to="/dashboard">
+          <ListItemIcon>
+            <DashboardIcon />
           </ListItemIcon>
-          <ListItemText
-            primary="Selenggara"
-            primaryTypographyProps={{ variant: "h6" }}
-          />
+          <ListItemText primary="Dashboard" />
         </ListItem>
-        {/* ... Add any additional items related to maintenance if needed */}
+        {/* Dropdown for MYLadang */}
+        <ListItem button onClick={handleAppsClick}>
+          <ListItemIcon>
+            <WorkIcon />
+          </ListItemIcon>
+          <ListItemText primary="MYLadang" component={NavLink} to="/MYLadang" />
+          {openApps ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={openApps} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {/* Subitems for MYLadang */}
+            <ListItem
+              button
+              sx={{ pl: 4 }}
+              component={NavLink}
+              to="/myladang/subitem1"
+            >
+              <ListItemText primary="Subitem 1" />
+            </ListItem>
+            {/* Add more subitems if necessary */}
+          </List>
+        </Collapse>
+        {/* Other items under APPS */}
+        {/* ... */}
       </List>
-      {/* You can add other sections or list items here */}
+      <Divider />
+
+      {/* MANAGEMENT Section */}
+      <List
+        subheader={
+          <ListSubheader
+            component="div"
+            sx={{
+              bgcolor: theme.palette.primary.dark,
+              color: theme.palette.grey[500],
+            }}
+          >
+            MANAGEMENT
+          </ListSubheader>
+        }
+      >
+        <ListItem button component={NavLink} to="/notifications">
+          <ListItemIcon>
+            <NotificationsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Notifikasi" />
+        </ListItem>
+        {/* Dropdown for Tetapan */}
+        <ListItem button onClick={handleManagementClick}>
+          <ListItemIcon>
+            <SettingsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Tetapan" />
+          {openManagement ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={openManagement} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItem
+              button
+              sx={{ pl: 4 }}
+              component={NavLink}
+              to="/tetapan/user"
+            >
+              <ListItemIcon>
+                <AccountCircleIcon />
+              </ListItemIcon>
+              <ListItemText primary="User" />
+            </ListItem>
+            <ListItem
+              button
+              sx={{ pl: 4 }}
+              component={NavLink}
+              to="/tetapan/support"
+            >
+              <ListItemIcon>
+                <HelpIcon />
+              </ListItemIcon>
+              <ListItemText primary="Support" />
+            </ListItem>
+            {/* Add more subitems if necessary */}
+          </List>
+        </Collapse>
+        {/* Other items under MANAGEMENT */}
+        {/* ... */}
+      </List>
+      <Divider />
+      {/* Logout Item */}
+      <ListItem button component={NavLink} to="/logout">
+        <ListItemIcon>
+          <LogoutIcon />
+        </ListItemIcon>
+        <ListItemText primary="Log Keluar" />
+      </ListItem>
     </Box>
   );
 }

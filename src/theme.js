@@ -1,45 +1,87 @@
 import { createTheme } from "@mui/material/styles";
 
-// Define the palette colors from your image (replace with the actual colors you want to use)
+// New palette colors with shades
 const paletteColors = {
-  primary: "#056B05",
-  secondary: "#05386B",
-  error: "#FF6565",
-  background: "#EDF5E1",
-  card: "#FFEB3B",
-  grey: {
-    500: "#9e9e9e", // Make sure this color is correctly defined
+  primary: {
+    light: "#83c683",
+    main: "#4CAF50",
+    dark: "#357a38",
+    contrastText: "#ffffff",
   },
-  textPrimary: "#000000",
+  secondary: {
+    light: "#be9c91",
+    main: "#8BC34A",
+    dark: "#5a9216",
+    contrastText: "#000000",
+  },
+  error: {
+    light: "#ffa4a2",
+    main: "#E57373",
+    dark: "#af4448",
+    contrastText: "#ffffff",
+  },
+  background: {
+    default: "#F1F8E9",
+    paper: "#ffffff",
+  },
+  grey: {
+    100: "#f5f5f5",
+    500: "#BDBDBD",
+    900: "#212121",
+  },
+  text: {
+    primary: "#333333",
+    secondary: "#575757",
+    disabled: "#9e9e9e",
+    hint: "#9e9e9e",
+  },
+  card: {
+    main: "#FFFFFF",
+  },
 };
 
-// Create a theme instance.
+// Create a theme instance with the new palette colors.
 const theme = createTheme({
   palette: {
     primary: {
-      main: paletteColors.primary,
-      contrastText: "#ffffff",
+      light: paletteColors.primary.light,
+      main: paletteColors.primary.main,
+      dark: paletteColors.primary.dark,
+      contrastText: paletteColors.primary.contrastText,
     },
     secondary: {
-      main: paletteColors.secondary,
+      light: paletteColors.secondary.light,
+      main: paletteColors.secondary.main,
+      dark: paletteColors.secondary.dark,
+      contrastText: paletteColors.secondary.contrastText,
     },
     error: {
-      main: paletteColors.error,
+      light: paletteColors.error.light,
+      main: paletteColors.error.main,
+      dark: paletteColors.error.dark,
+      contrastText: paletteColors.error.contrastText,
     },
     background: {
-      default: paletteColors.background,
+      default: paletteColors.background.default,
+      paper: paletteColors.background.paper,
     },
-    grey: paletteColors.grey, // Make sure grey is assigned correctly
+    grey: {
+      100: paletteColors.grey[100],
+      500: paletteColors.grey[500],
+      900: paletteColors.grey[900],
+    },
     text: {
-      primary: paletteColors.textPrimary,
-      secondary: "#9e9e9e",
+      primary: paletteColors.text.primary,
+      secondary: paletteColors.text.secondary,
+      disabled: paletteColors.text.disabled,
+      hint: paletteColors.text.hint,
     },
     card: {
-      main: paletteColors.card,
+      main: paletteColors.card.main,
     },
   },
   typography: {
-    fontFamily: "Helvetica, Arial, sans-serif",
+    fontFamily: '"Inter", sans-serif',
     h1: {
       fontSize: "2.5rem",
       fontWeight: 500,
