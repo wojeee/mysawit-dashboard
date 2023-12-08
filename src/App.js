@@ -8,7 +8,8 @@ import {
 } from "react-router-dom";
 import theme from "./theme";
 import Dashboard from "./pages/Dashboard";
-import SenaraiAset from "./pages/SenaraiAset"; // You'll need to create this component
+import MYFleet from "./pages/MYFleet";
+import MYGaji from "./pages/MYGaji";
 import Sidebar from "./components/Sidebar"; // Assuming Sidebar is in the components folder
 import "./App.css";
 
@@ -20,7 +21,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate replace to="/dashboard" />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/senarai-aset" element={<SenaraiAset />} />
+          <Route path="/myfleet" element={<MYFleet />} />
+          <Route path="/mygaji" element={<MYGaji />} />
           {/* Add more routes as needed */}
         </Routes>
       </Router>

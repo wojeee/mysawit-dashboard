@@ -12,6 +12,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HelpIcon from "@mui/icons-material/Help";
 import LogoutIcon from "@mui/icons-material/Logout";
+import PaymentIcon from "@mui/icons-material/Payment"; // Import at the top with other icons
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -82,18 +83,23 @@ function Sidebar() {
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
-        <ListItem button component={NavLink} to="/myfleet">
+        <ListItem button component={NavLink} to="/mygaji">
           <ListItemIcon>
-            <DashboardIcon />
+            <PaymentIcon />
           </ListItemIcon>
-          <ListItemText primary="MYFleet" />
+          <ListItemText primary="MYGaji" />
         </ListItem>
-        {/* Dropdown for MYLadang */}
-        <ListItem button onClick={handleAppsClick}>
+        {/* Dropdown for MYFleet */}
+        <ListItem
+          button
+          onClick={handleAppsClick}
+          component={NavLink}
+          to="/myfleet"
+        >
           <ListItemIcon>
             <WorkIcon />
           </ListItemIcon>
-          <ListItemText primary="MYLadang" component={NavLink} to="/MYLadang" />
+          <ListItemText primary="MYFleet" component={NavLink} to="/myfleet" />
           {openApps ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={openApps} timeout="auto" unmountOnExit>
@@ -103,9 +109,9 @@ function Sidebar() {
               button
               sx={{ pl: 4 }}
               component={NavLink}
-              to="/myladang/subitem1"
+              to="/myfleet/senarai-aset"
             >
-              <ListItemText primary="Subitem 1" />
+              <ListItemText primary="Senarai Aset" />
             </ListItem>
             {/* Add more subitems if necessary */}
           </List>
