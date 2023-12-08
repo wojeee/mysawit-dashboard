@@ -6,13 +6,15 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import Collapse from "@mui/material/Collapse";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import LocalShipping from "@mui/icons-material/LocalShipping";
+import Forest from "@mui/icons-material/Forest";
 import WorkIcon from "@mui/icons-material/Work";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+import Payments from "@mui/icons-material/Payments";
+import Description from "@mui/icons-material/Description";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HelpIcon from "@mui/icons-material/Help";
 import LogoutIcon from "@mui/icons-material/Logout";
-import PaymentIcon from "@mui/icons-material/Payment"; // Import at the top with other icons
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -23,7 +25,7 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 
 function Sidebar() {
   const theme = useTheme();
-  const [openApps, setOpenApps] = React.useState(true); // Assuming apps are always open
+  const [openApps, setOpenApps] = React.useState(false); // Assuming apps are always close
   const [openManagement, setOpenManagement] = React.useState(false);
 
   const handleAppsClick = () => {
@@ -78,17 +80,27 @@ function Sidebar() {
         }
       >
         <ListItem button component={NavLink} to="/dashboard">
-          <ListItemIcon>
+          <ListItemIcon
+            sx={{
+              color: theme.palette.primary.contrastText,
+            }}
+          >
             <DashboardIcon />
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
-        <ListItem button component={NavLink} to="/mygaji">
-          <ListItemIcon>
-            <PaymentIcon />
+
+        <ListItem button component={NavLink} to="/myladang">
+          <ListItemIcon
+            sx={{
+              color: theme.palette.primary.contrastText,
+            }}
+          >
+            <Forest />
           </ListItemIcon>
-          <ListItemText primary="MYGaji" />
+          <ListItemText primary="MYLadang" />
         </ListItem>
+
         {/* Dropdown for MYFleet */}
         <ListItem
           button
@@ -96,15 +108,20 @@ function Sidebar() {
           component={NavLink}
           to="/myfleet"
         >
-          <ListItemIcon>
-            <WorkIcon />
+          <ListItemIcon
+            sx={{
+              color: theme.palette.primary.contrastText,
+            }}
+          >
+            <LocalShipping />
           </ListItemIcon>
+
           <ListItemText primary="MYFleet" component={NavLink} to="/myfleet" />
           {openApps ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={openApps} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {/* Subitems for MYLadang */}
+            {/* Subitems for MYFleet */}
             <ListItem
               button
               sx={{ pl: 4 }}
@@ -119,6 +136,40 @@ function Sidebar() {
         {/* Other items under APPS */}
         {/* ... */}
       </List>
+
+      <ListItem button component={NavLink} to="/mykerja">
+        <ListItemIcon
+          sx={{
+            color: theme.palette.primary.contrastText,
+          }}
+        >
+          <WorkIcon />
+        </ListItemIcon>
+        <ListItemText primary="MYKerja" />
+      </ListItem>
+
+      <ListItem button component={NavLink} to="/mygaji">
+        <ListItemIcon
+          sx={{
+            color: theme.palette.primary.contrastText,
+          }}
+        >
+          <Payments />
+        </ListItemIcon>
+        <ListItemText primary="MYGaji" />
+      </ListItem>
+
+      <ListItem button component={NavLink} to="/myinvoice">
+        <ListItemIcon
+          sx={{
+            color: theme.palette.primary.contrastText,
+          }}
+        >
+          <Description />
+        </ListItemIcon>
+        <ListItemText primary="MYInvoice" />
+      </ListItem>
+
       <Divider />
 
       {/* MANAGEMENT Section */}
@@ -135,15 +186,13 @@ function Sidebar() {
           </ListSubheader>
         }
       >
-        <ListItem button component={NavLink} to="/notifications">
-          <ListItemIcon>
-            <NotificationsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Notifikasi" />
-        </ListItem>
         {/* Dropdown for Tetapan */}
         <ListItem button onClick={handleManagementClick}>
-          <ListItemIcon>
+          <ListItemIcon
+            sx={{
+              color: theme.palette.primary.contrastText,
+            }}
+          >
             <SettingsIcon />
           </ListItemIcon>
           <ListItemText primary="Tetapan" />
@@ -157,7 +206,11 @@ function Sidebar() {
               component={NavLink}
               to="/tetapan/user"
             >
-              <ListItemIcon>
+              <ListItemIcon
+                sx={{
+                  color: theme.palette.primary.contrastText,
+                }}
+              >
                 <AccountCircleIcon />
               </ListItemIcon>
               <ListItemText primary="User" />
@@ -168,7 +221,11 @@ function Sidebar() {
               component={NavLink}
               to="/tetapan/support"
             >
-              <ListItemIcon>
+              <ListItemIcon
+                sx={{
+                  color: theme.palette.primary.contrastText,
+                }}
+              >
                 <HelpIcon />
               </ListItemIcon>
               <ListItemText primary="Support" />
@@ -182,7 +239,11 @@ function Sidebar() {
       <Divider />
       {/* Logout Item */}
       <ListItem button component={NavLink} to="/logout">
-        <ListItemIcon>
+        <ListItemIcon
+          sx={{
+            color: theme.palette.primary.contrastText,
+          }}
+        >
           <LogoutIcon />
         </ListItemIcon>
         <ListItemText primary="Log Keluar" />
