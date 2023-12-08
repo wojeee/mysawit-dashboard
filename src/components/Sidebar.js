@@ -37,7 +37,7 @@ function Sidebar() {
     <Box
       sx={{
         width: 250,
-        bgcolor: theme.palette.primary.dark,
+        bgcolor: theme.palette.primary.main,
         color: theme.palette.primary.contrastText,
         height: "100vh",
         position: "fixed",
@@ -50,11 +50,11 @@ function Sidebar() {
           alignItems: "center",
           justifyContent: "center",
           p: 2,
-          bgcolor: theme.palette.primary.dark,
+          bgcolor: theme.palette.primary.main,
         }}
       >
         <Typography
-          variant="h6"
+          variant="h4"
           sx={{ color: theme.palette.primary.contrastText }}
         >
           MYSawit
@@ -68,8 +68,8 @@ function Sidebar() {
           <ListSubheader
             component="div"
             sx={{
-              bgcolor: theme.palette.primary.dark,
-              color: theme.palette.grey[500],
+              bgcolor: theme.palette.primary.main,
+              color: theme.palette.grey[100],
             }}
           >
             APPS
@@ -81,6 +81,12 @@ function Sidebar() {
             <DashboardIcon />
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
+        </ListItem>
+        <ListItem button component={NavLink} to="/myfleet">
+          <ListItemIcon>
+            <DashboardIcon />
+          </ListItemIcon>
+          <ListItemText primary="MYFleet" />
         </ListItem>
         {/* Dropdown for MYLadang */}
         <ListItem button onClick={handleAppsClick}>
@@ -115,8 +121,8 @@ function Sidebar() {
           <ListSubheader
             component="div"
             sx={{
-              bgcolor: theme.palette.primary.dark,
-              color: theme.palette.grey[500],
+              bgcolor: theme.palette.primary.main,
+              color: theme.palette.grey[100],
             }}
           >
             MANAGEMENT
