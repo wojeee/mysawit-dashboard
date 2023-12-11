@@ -36,7 +36,7 @@ const paletteColors = {
     hint: "#9e9e9e",
   },
   card: {
-    main: "#FFFFFF",
+    main: "#FFF5D0",
   },
 };
 
